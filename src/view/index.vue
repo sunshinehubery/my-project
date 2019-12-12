@@ -25,7 +25,7 @@ export default {
       isShowCountDown: false,
       isShowBox: false,
       isShowRain: false,
-      redbagCount: 1,
+      redbagCount: 9,
       countDown: 3,
       showStatus: 1,
     }
@@ -78,8 +78,22 @@ export default {
           this.isShowRain = true
           this.$refs.showRain.init()
           clearInterval(countDownTimer)
+          this.redbagTimer()
         }
       }, 1000);
+    },
+    redbagTimer(){
+      const countDownTimer = setInterval(() => {
+        if(this.countDown > 0){
+          this.countDown = this.countDown -1
+        } else {
+          this.isShowRain = false
+          this.isShowBox = true;
+          this.showStatus = 1;
+          this.countDown = 3;
+          clearInterval(countDownTimer)
+        }
+      }, 1500);
     },
     closeBox(){
       this.isShowBg = false

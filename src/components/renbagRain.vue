@@ -63,12 +63,12 @@ export default {
     init(){
       const that = this
       setInterval(function(){
-        that.height = that.height + 30
+        that.height = that.height + 10
         var left = Math.random() * that.fullWidth;
         var height = Math.random() *20 + that.height;
         var url = "src/assets/44d89.png"; 
         that.addBag(left, height, url);
-      }, 500);
+      }, 400);
     },
     addBag(left, height, url){
       if(height < this.fullHeight){
@@ -106,7 +106,7 @@ export default {
   .red_zone_img{
     width: 100px;
     height: 147px;
-    -weikit-transform-origin:left top; 
+    // -weikit-transform-origin:left top; 
     transform:rotate(-45deg); 
   }
 </style>
