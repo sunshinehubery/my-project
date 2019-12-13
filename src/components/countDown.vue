@@ -12,7 +12,9 @@ export default {
       msg: 'Welcome to Your Vue.js App',
     }
   },
-  props:["countDown"]
+  props:[
+    "countDown"    // 倒计时时间
+  ],
 }
 </script>
 <style lang="scss" scope>

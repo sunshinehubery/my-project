@@ -35,9 +35,10 @@ export default {
     }
   },
   props:[
-    'redbagCount',
+    'redbagCount',  // 剩余抢红包次数
   ],
   methods: {
+    // 开启抢红包
     openRedbag(){
       this.$emit('open')
     }

@@ -37,7 +37,7 @@
 export default {
   data() {
     return {
-      prize: {
+      prize: {    // 奖品
         tips: '恭喜获得',
         isPrize: true,
         prizieUrl: 'src/assets/047bd.png',
@@ -45,7 +45,9 @@ export default {
       },
     }
   },
-  props:['showStatus'],
+  props:[
+    'showStatus'    //判断是否开启    0 无次数   1有次数开启
+  ],
   methods: {
     // 关闭box窗口
     close(){
@@ -169,6 +171,8 @@ export default {
     border: 1px solid #ffe4c7;
     margin-left: 100px;
     img{
+      width: 158px;
+      height: 90px;
       padding: 15px;
     }
   }

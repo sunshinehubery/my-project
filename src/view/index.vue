@@ -6,6 +6,7 @@
     <v-rain v-show="isShowRain" ref="showRain"></v-rain>
     <v-bg v-show="isShowBg"></v-bg>
     <v-box v-bind:showStatus="showStatus" v-show="isShowBox" @closeBox="closeBox"></v-box>
+    <rain ref="rain" :time="10" v-show="isOpen" />
   </div>
 </template>
 
@@ -16,18 +17,20 @@ import CountDown from '@/components/countDown.vue';
 import Rain from '@/components/renbagRain.vue';
 import BG from '@/base/bg.vue';
 import Box from '@/base/box.vue';
+import rain from '@/components/rain'
 export default {
   name: 'page',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
-      isShowBg: false,
-      isShowCountDown: false,
-      isShowBox: false,
-      isShowRain: false,
-      redbagCount: 9,
-      countDown: 3,
-      showStatus: 1,
+      isShowBg: false,  // 是否展示阴影
+      isShowCountDown: false, //  是否展示倒计时
+      isShowBox: false, // 是否展示提示框
+      isShowRain: false,  // 是否开启红包雨动画
+      redbagCount: 9, // 抢红包剩余次数
+      countDown: 3, // 准备倒计时
+      showStatus: 1, // //判断是否能开启    0 无次数   1有次数开启
+      isOpen: false,
     }
   },
   components: {
@@ -37,6 +40,7 @@ export default {
     'v-countDown':CountDown,
     'v-rain':Rain,
     'v-box':Box,
+    rain
   },
   methods: {
     //表示禁止默认行为
@@ -75,26 +79,29 @@ export default {
           this.countDown = this.countDown -1
         } else {
           this.isShowCountDown = false
-          this.isShowRain = true
-          this.$refs.showRain.init()
+          this.isOpen = true
+          this.$refs.rain.start()
           clearInterval(countDownTimer)
           this.redbagTimer()
         }
       }, 1000);
     },
+    // 红包雨效果倒计时
     redbagTimer(){
       const countDownTimer = setInterval(() => {
         if(this.countDown > 0){
           this.countDown = this.countDown -1
         } else {
-          this.isShowRain = false
+          this.isOpen = false
+          this.$refs.rain.clear()
           this.isShowBox = true;
           this.showStatus = 1;
           this.countDown = 3;
           clearInterval(countDownTimer)
         }
-      }, 1500);
+      }, 5000);
     },
+    // 关闭提示框box
     closeBox(){
       this.isShowBg = false
       this.isShowBox = false;

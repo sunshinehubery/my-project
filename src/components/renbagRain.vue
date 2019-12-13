@@ -8,13 +8,13 @@
 import jquery from 'jquery';
 export default {
   data () {
-			return {
-				fullHeight: document.documentElement.clientHeight,
-        fullWidth: document.documentElement.clientWidth,
-        left: 0,
-        height: 0,
-			}
-		},
+    return {
+      fullHeight: document.documentElement.clientHeight,   // 浏览器高度
+      fullWidth: document.documentElement.clientWidth,     // 浏览器宽度
+      left: 0,
+      height: 0,
+    }
+	},
   watch: {
     fullHeight (val) {//监控浏览器高度变化
       if(!this.timer) {
@@ -26,7 +26,7 @@ export default {
         },400)
       }
     },
-    fullWidth (val) {//监控浏览器高度变化
+    fullWidth (val) {//监控浏览器宽度变化
       if(!this.timer) {
         this.fullWidth = val
         this.timer = true
@@ -51,7 +51,7 @@ export default {
         })()
       }
     },
-    get_bodyWidth () {//动态获取浏览器高度
+    get_bodyWidth () {//动态获取浏览器宽度
       const that = this
       window.onresize = () => {
         return (() => {
@@ -60,6 +60,7 @@ export default {
         })()
       }
     },
+    // 初始化
     init(){
       const that = this
       setInterval(function(){
@@ -70,6 +71,7 @@ export default {
         that.addBag(left, height, url);
       }, 400);
     },
+    // 添加红包
     addBag(left, height, url){
       if(height < this.fullHeight){
         var div = document.createElement("div");
