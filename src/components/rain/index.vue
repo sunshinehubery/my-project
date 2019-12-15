@@ -65,7 +65,7 @@ export default {
     grid() {
       let [startX, startY, endX, endY] = [0,0,0,0]
       let rects = document.documentElement.getBoundingClientRect()
-      startX = Math.random() * (rects.width - 20)
+      startX = Math.random() * (20)
       startY = -20
       endX = Math.random() * (rects.width - 20)
       endY = rects.height
