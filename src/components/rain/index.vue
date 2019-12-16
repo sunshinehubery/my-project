@@ -41,7 +41,7 @@ export default {
       rains: [], // 组件列表
       rainsCount: 0, // 组件下标
       createTimer: null, // 创建雨点计时器
-      flag: true // 是否结束
+      flag: true, // 是否结束
     };
   },
   components: {
@@ -65,10 +65,10 @@ export default {
     grid() {
       let [startX, startY, endX, endY] = [0,0,0,0]
       let rects = document.documentElement.getBoundingClientRect()
-      startX = Math.random() * (20)
+      startX = Math.random() * (200)
       startY = -20
-      endX = Math.random() * (rects.width - 20)
-      endY = rects.height
+      endX = Math.random() * (rects.width/2) + rects.width/2
+      endY = rects.height * 1.5
 
       return {
         startX,
@@ -80,23 +80,23 @@ export default {
 
     // 随机速度曲线值
     newCubicBezier() {
-      let arr = ['0,.49,1,.3', '.04,.2,.93,.49', '.99,.36,.54,.46',] // 快 中 慢
+      let arr = ['0,0,1,1.5', '.04,.2,.93,.49', '.99,.36,.54,.46',] // 快 中 慢
       // let idx = parseInt(Math.random() * 10) > 2 ? 0 : 1
       let idx = parseInt(Math.random() * 3)
-      return arr[idx]
+      return arr[0]
     },
 
     // 创建雨点
-    async create(rainscount) {
+    create(rainscount) {
 
       // 生成Dom
       this.rains.push(`rain-point-${rainscount}`)
 
       // 生成坐标
-      let rects = await this.grid();
+      let rects = this.grid();
 
       // 渲染完成后执行
-      await this.$nextTick(async function() {
+      this.$nextTick(function() {
         // Dom节点
         let el = this.$refs[`rain-point-${rainscount}`][0];
 
@@ -109,9 +109,9 @@ export default {
         }
 
         // 设置初始坐标
-        await el.setStyle(initStyleText);
+        el.setStyle(initStyleText);
         // 设置结束坐标
-        await setTimeout(() => {
+        setTimeout(() => {
           el.setStyle(actionStyleText)
         }, 50)
         // 动画结束
@@ -137,11 +137,16 @@ export default {
           this.timeoutCallback()
         }
       })
-      // 创建节点
-      this.createTimer = setInterval(async () => {
-        await this.create(this.rainsCount);
+      // 创建节
+      for(let i = 0;i < 60;i++){
+        setTimeout(this.timers(i),100)
+      }
+    },
+    timers(i){
+      setTimeout(() => {
+        this.create(this.rainsCount);
         this.rainsCount += 1;
-      }, this.density);
+      },Math.random()*1000*i + 200 )
     },
 
     // 停止
@@ -156,7 +161,6 @@ export default {
       countdown.clearAssignTimer('rain')
       this.rains = []
       this.rainsCount = 0
-      console.log(this.count)
     }
   },
   mounted() {

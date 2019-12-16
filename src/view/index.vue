@@ -1,11 +1,11 @@
 <template>
   <div class="page">
     <v-nav></v-nav>
-    <v-redbag v-bind:redbagCount="redbagCount" @open="openRedbag"></v-redbag>
-    <v-countDown v-show="isShowCountDown" v-bind:countDown="countDown"></v-countDown>
+    <v-redbag :redbagCount="redbagCount" @open="openRedbag"></v-redbag>
+    <v-countDown v-show="isShowCountDown" :countDown="countDown"></v-countDown>
     <v-rain v-show="isShowRain" ref="showRain"></v-rain>
     <v-bg v-show="isShowBg"></v-bg>
-    <v-box v-bind:showStatus="showStatus" v-show="isShowBox" @closeBox="closeBox"></v-box>
+    <v-box :showStatus="showStatus" v-show="isShowBox" @closeBox="closeBox"></v-box>
     <rain ref="rain" :time="10" v-show="isOpen" />
   </div>
 </template>

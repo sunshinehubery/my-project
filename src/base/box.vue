@@ -163,6 +163,10 @@ export default {
     height: 76px;
     margin-left: 245px;
     margin-top: 45px;
+    img{
+      width: 76px;
+      height: 76px;
+    }
   }
   .prize_msg_content_img{
     width: 190px;
