@@ -10,6 +10,7 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
+    "element-ui": "^2.13.0",
     "jquery": "^3.4.1",
     "lib-flexible": "^0.3.2",
     "postcss-px2rem": "^0.3.0",

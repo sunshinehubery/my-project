@@ -5,12 +5,14 @@ Vue.use(VueRouter);
 //导入组件
 import page from '@/view/index.vue';
 import check from '@/view/check.vue';
+import login from '@/view/login.vue';
 import test from '@/components/test.vue';
 
 // 定义路由
 const routes = [
     {path:'/home',component:page},
     {path:'/check',component:check},
+    {path:'/login',component:login},
     {path:'/test',component:test},
     {path:'*',redirect: '/home'},
 ];

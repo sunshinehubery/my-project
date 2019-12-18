@@ -7,7 +7,7 @@
     <Verify class="verify" :type="2"></Verify>
     <Verify class="verify" :type="3"></Verify>
     <Verify :showButton="true" :imgUrl="imgUrl" :imgName="imgName" class="verify" :type="4" :vSpace=0 ></Verify>
-    <Verify :checkNum="2" :imgUrl="imgUrl" :imgName="imgName" class="verify" :type="5"></Verify>
+    <Verify :checkNum="2" :imgUrl="imgUrl" :imgName="imgName" class="verify" :type="5" @success="alert('success')" @error="alert('error')"></Verify>
   </div>
 </template>
 <script>
